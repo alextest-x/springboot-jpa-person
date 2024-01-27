@@ -58,7 +58,10 @@ public class SpringbootJpaApplication implements CommandLineRunner {
         //queriesFuntionAgregation();
 
         //consultas que estan anidada dentro de una consulta
-          subConsultas();
+        //  subConsultas();
+
+        //create();
+          update();
     }
 
     @Transactional(readOnly = true)
@@ -108,12 +111,6 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 
     }
-
-
-
-
-
-
 
     @Transactional(readOnly = true)
     public void queriesFuntionAgregation(){
@@ -177,9 +174,6 @@ public class SpringbootJpaApplication implements CommandLineRunner {
                 ", avg = " + resumenReg[3] +
                 ", count = " + resumenReg[4]
                 );
-
-
-
 
     }
 
@@ -336,7 +330,6 @@ public class SpringbootJpaApplication implements CommandLineRunner {
        personDto.forEach( personaDto -> System.out.println(personaDto) );
 
     }
-
 
 
     @Transactional(readOnly = true)

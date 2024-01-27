@@ -2,6 +2,9 @@ package com.curso.springboot.jpa.springbootjpa.entities;
 
 import jakarta.persistence.*;
 
+//import java.time.LocalDateTime;
+
+
 
 @Entity
 @Table(name="persons")
@@ -12,9 +15,20 @@ public class Person {
     private Long id;
 
     private String name;
+
     private String lastname;
+
     @Column(name="programming_language")
     private String programmingLanguage;
+
+    /*
+    se agrega un atributo porque se creo la clase Audit.java
+    creamos la instancia para que el valor no vaya nulo
+    donde se pusieron las fechas para deacoplar y poder utilizarlo
+    en otras clases y ponemos la variable audit en el string().to
+    */
+    @Embedded
+    private Audit audit = new Audit();
 
     //simepre hay un cosntructor vacio
     public Person() {
@@ -27,6 +41,7 @@ public class Person {
         this.lastname = lastname;
         this.programmingLanguage = programmingLanguage;
     }
+
 
 
     public Long getId() {
@@ -57,11 +72,14 @@ public class Person {
         return programmingLanguage;
     }
 
+
+
+
     public void setProgrammingLanguage(String programmingLanguage) {
         this.programmingLanguage = programmingLanguage;
     }
 
-    //para imprimir el objeto persona
+
     @Override
     public String toString() {
         return "Person{" +
@@ -69,9 +87,10 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", programmingLanguage='" + programmingLanguage + '\'' +
+                ", createAt=" + audit.getCreateAt() +
+                ", updatedAt=" + audit.getUpdatedAt() +
                 '}';
     }
-
 
     public Person(String name, String lastname) {
         this.name = name;
